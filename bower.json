@@ -1,0 +1,24 @@
+{
+  "name": "leaflet.activelayer",
+  "main": "dist/leaflet-activelayer.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ubimix/leaflet.activelayer",
+  "authors": [
+    "kotelnikov <mikhail.kotelnikov@ubimix.com>"
+  ],
+  "description": "A data indexing Leaflet layer. Allows to access to retrieve multiple data objects associated with small geographic zones.",
+  "keywords": [
+    "map",
+    "carto",
+    "Leaflet"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./app/libs",
+    "test",
+    "tests"
+  ]
+}
