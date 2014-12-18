@@ -1,5 +1,5 @@
 /*!
- * leaflet.activelayer v0.0.1 | License: MIT 
+ * leaflet.activelayer v0.0.2 | License: MIT 
  * 
  */
 (function webpackUniversalModuleDefinition(root, factory) {
