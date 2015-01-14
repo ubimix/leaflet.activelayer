@@ -20,15 +20,26 @@ function getGeoJsonBoundingBox(d) {
     // return [ [ bbox.getSouth(), bbox.getWest() ],
     // [ bbox.getNorth(), bbox.getEast() ] ];
 }
+var Base;
 
-var DataActivationLayer = L.Class.extend({
+if (L.Layer) {
+    Base = L.Layer.extend({
+        throttle : L.Util.throttle
+    });
+} else {
+    Base = L.Class.extend({
+        includes : [ L.Mixin.Events ],
+        throttle : L.Util.limitExecByInterval
+    });
+}
 
-    includes : [ L.Mixin.Events ],
+var DataActivationLayer = Base.extend({
 
     /** Initializs options of this class. */
     initialize : function(options) {
         L.setOptions(this, options);
         this.setData(this.options.data);
+        
     },
 
     // ----------------------------------------------------------------------
@@ -48,8 +59,7 @@ var DataActivationLayer = L.Class.extend({
     _setDelegateEvents : function(method) {
         var map = this._map;
         [ 'mousemove', 'click' ].forEach(function(eventType) {
-            var handler = L.Util.limitExecByInterval(this._delegateEvents.bind(
-                    this, eventType), 10);
+            var handler = this.throttle(this._delegateEvents.bind(this, eventType), 10);
             map[method](eventType, handler);
         }, this);
     },
@@ -76,7 +86,7 @@ var DataActivationLayer = L.Class.extend({
     _getRadius : function() {
         var radius = this.options.radius || 10;
         if (typeof radius === 'function') {
-            radius = this.options.radius(this);
+            return radius.call(this.options);
         }
         return radius;
     },

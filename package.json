@@ -9,7 +9,7 @@
   ],
   "contributors": [],
   "dependencies": {
-    "leaflet": "^0.7.3",
+    "leaflet": "git+https://github.com/Leaflet/Leaflet.git#fc05abd3364aadb59399f0c7a8ed4b03ddc46e5e",
     "rbush": "^1.3.4"
   },
   "devDependencies": {
